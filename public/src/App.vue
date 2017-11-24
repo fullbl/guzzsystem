@@ -1,13 +1,18 @@
 <template>
   <div id="app">
+    <app-nav></app-nav>
     <img src="./assets/corte-dei-miracoli.png" id="logo">
     <router-view/>
   </div>
 </template>
 
 <script>
+import AppNav from '@/components/AppNav'
 export default {
-  name: 'app'
+  name: 'app',
+  components: {
+    AppNav
+  }
 }
 </script>
 

@@ -1,0 +1,95 @@
+[
+{
+  "type": "date",
+  "label": "Data",
+  "name": "date"
+},
+{
+  "type": "number",
+  "label": "Fondo cassa iniziale",
+  "name": "fondo-cassa-iniziale"
+},
+{
+  "label": "Incasso lordo",
+  "prefix": "incasso-lordo-",
+  "type": "group",
+  "inputs": [
+  {
+    "type": "number",
+    "label": "Bancone",
+    "name": "bancone"
+  },
+  {
+    "type": "number",
+    "label": "Festa",
+    "name": "festa"
+  },
+  {
+    "type": "number",
+    "label": "Dall'ingresso",
+    "name": "ingresso"
+  }]
+},
+{
+  "type": "number",
+  "label": "Pagamento baristi",
+  "name": "pagamento-baristi"
+},
+{
+  "label": "Eventuale rimborso",
+  "prefix": "rimborso-",
+  "type": "group",
+  "inputs": [
+  {
+    "type": "text",
+    "label": "Causale",
+    "name": "causale"
+  },
+  {
+    "type": "number",
+    "label": "Ammontare",
+    "name": "amount"
+  }]
+},
+{
+  "type": "number",
+  "label": "Netto bar",
+  "name": "netto-bar"
+},
+{
+  "label": "Versamento Taiga",
+  "prefix": "versamento-",
+  "type": "group",
+  "inputs": [
+  {
+    "type": "text",
+    "label": "Chi",
+    "name": "chi"
+  },
+  {
+    "type": "text",
+    "label": "Come",
+    "name": "come"
+  },
+  {
+    "type": "number",
+    "label": "Ammontare",
+    "name": "amount"
+  }]
+},
+{
+  "label": "Eventuali pagamenti",
+  "prefix": "pagamento-",
+  "type": "group",
+  "inputs": [
+  {
+    "type": "text",
+    "label": "Causale",
+    "name": "causale"
+  },
+  {
+    "type": "number",
+    "label": "Ammontare",
+    "name": "amount"
+  }]
+}]

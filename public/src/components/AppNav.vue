@@ -1,16 +1,14 @@
 <template>
   <nav class="navbar navbar-default">
-      <div class="navbar-header" v-show="isLoggedIn()">
-        <router-link to="/" class="navbar-brand btn btn-info log">Nuovo bar</router-link>
-        <router-link to="/" class="navbar-brand btn btn-info log">Nuovo ingressi</router-link>
-        <router-link to="/" class="navbar-brand btn btn-info log">Lista</router-link>
-      </div>
-      <ul class="nav navbar-nav navbar-right">
-        <li>
-          <button class="btn btn-danger log" @click="handleLogout()" v-show="isLoggedIn()">Log out </button>
-          <button class="btn btn-info log" @click="handleLogin()" v-show="!isLoggedIn()">Log In</button>
-      </li>
-    </ul>
+    <div class="navbar-header" v-show="isLoggedIn()">
+      <router-link to="/bar" class="navbar-brand btn btn-info log">Nuovo bar</router-link>
+      <router-link to="/" class="navbar-brand btn btn-info log">Nuovo ingressi</router-link>
+      <router-link to="/" class="navbar-brand btn btn-info log">Lista</router-link>
+    </div>
+    <div class="nav navbar-nav navbar-right">
+      <button class="btn btn-danger log" @click="handleLogout()" v-show="isLoggedIn()">Log out </button>
+      <button class="btn btn-info log" @click="handleLogin()" v-show="!isLoggedIn()">Log In</button>
+    </div>
   </nav>
 </template>
 

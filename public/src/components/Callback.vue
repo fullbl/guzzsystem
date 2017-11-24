@@ -1,18 +1,13 @@
 <template>
   <div class="callback">
-    <app-nav></app-nav>
-    Callback
+    Attendere ...
   </div>
 </template>
 
 <script>
 import { setIdToken, setAccessToken } from '../utils/auth';
-import AppNav from './AppNav';
 export default {
   name: 'Callback',
-  components: {
-    AppNav,
-  },
   mounted() {
     this.$nextTick(() => {
       setAccessToken();
