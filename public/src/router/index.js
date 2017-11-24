@@ -5,6 +5,8 @@ import Callback from '@/components/Callback';
 import Form from '@/components/Form';
 import { requireAuth } from '../utils/auth';
 
+const BASE_API_URL = process.env.BASE_API_URL;
+
 Vue.use(Router)
 
 export default new Router({
@@ -26,7 +28,8 @@ export default new Router({
       beforeEnter: requireAuth,
       props: {
         inputs: require('../assets/forms/bar.json'),
-        title: 'Bar'
+        title: 'Bar',
+        action: BASE_API_URL + 'bar'
       },
       component: Form
     }
