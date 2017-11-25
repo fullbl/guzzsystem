@@ -6,5 +6,11 @@
     "guzzerie":
     {
     	"allowed_client": "http://localhost:8080"
+    },
+    "auth0":
+    {
+    	"audience": "",
+    	"issuer": "",
+        "jwksUri": ""
     }
 }

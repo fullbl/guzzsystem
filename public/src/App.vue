@@ -1,7 +1,7 @@
 <template>
   <div id="app">
-    <app-nav></app-nav>
     <img src="./assets/corte-dei-miracoli.png" id="logo">
+    <app-nav></app-nav>
     <router-view/>
   </div>
 </template>

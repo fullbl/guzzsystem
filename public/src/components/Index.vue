@@ -1,6 +1,6 @@
 <template>
   <div class="app">
-    Index
+    GuzzLord!
   </div>
 </template>
 

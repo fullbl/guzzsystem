@@ -2,13 +2,13 @@
   <form v-on:submit.prevent="save" v-bind:action="action" method="POST">
     <h1>{{ title }}</h1>
     <input-part v-for="input in inputs" key="input.name" v-bind:input="input" v-on:changeEl="handleChanges"></input-part>
-    <input type="submit" value="salva">
+    <input type="submit" value="salva" class="btn btn-success">
   </form>
 </template>
 
 <script>
 import InputPart from './InputPart';
-import axios from 'axios';
+import resources from '../services/resources';
 import errorHandler from '../mixins/errorHandler'
 
 export default {
@@ -22,26 +22,27 @@ export default {
         case 'date':
           var formController = this;
           event.target.form.disabled = true;
-          axios.get(
+          resources.get(
             event.target.form.action, 
-            {
-              params: {
-                date: event.target.value
+
+            {date: event.target.value},
+
+            (data) => {
+              event.target.form.disabled = false;
+              for(let i in event.target.form.elements){
+                if(!event.target.form.elements.hasOwnProperty(i))
+                  continue;
+                let input = event.target.form.elements[i];
+                if(data.data.hasOwnProperty(input.name))
+                  input.value = data.data[input.name];
               }
-            })
-          .then((data) => {
-            event.target.form.disabled = false;
-            for(let i in event.target.form.elements){
-              if(!event.target.form.elements.hasOwnProperty(i))
-                continue;
-              let input = event.target.form.elements[i];
-              if(data.data.hasOwnProperty(input.name))
-                input.value = data.data[input.name];
+            },
+
+            (response) => {
+              formController.handleError(response);
+              event.target.form.disabled = false;
             }
-          }).catch((response) => {
-            formController.handleError(response);
-            event.target.form.disabled = false;
-          });
+          );
           break;
       }
     },
@@ -58,15 +59,22 @@ export default {
           return previous
         }, {});
 
-      axios.post(event.target.action, data)
-        .then((response) => {
+      resources.post(
+        event.target.action, 
+
+        data,
+
+        (response) => {
           event.target.disabled = false;
           alert(response.data.message);
-        })
-        .catch((response) => {
+        },
+
+        (response) => {
           event.target.disabled = false;
           formController.handleError(response);
-        });
+        }
+
+      );
     }
   },
   props: ['inputs', 'title', 'action'] ,

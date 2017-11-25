@@ -1,2 +1,4 @@
 node_modules
 dev.env.js
+development.json
+production.json
