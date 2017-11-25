@@ -38,7 +38,7 @@ router.get('/bar', authCheck, function(req, res, next) {
 router.post('/bar', authCheck, function(req, res, next) {
 	req.body.type = 'bar';
 	DBUtils.write(req.body, function(){
-		res.send({"message":"ok"});
+		res.send({"message":"salvato"});
 	},handleError);
 });
 
@@ -52,7 +52,7 @@ router.get('/ingresso', authCheck, function(req, res, next) {
 router.post('/ingresso', authCheck, function(req, res, next) {
 	req.body.type = 'ingresso';
 	DBUtils.write(req.body, function(){
-		res.send({"message":"ok"});
+		res.send({"message":"salvato"});
 	},handleError);
 });
 

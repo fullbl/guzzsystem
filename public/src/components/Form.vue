@@ -33,7 +33,7 @@ export default {
                 if(!event.target.form.elements.hasOwnProperty(i))
                   continue;
                 let input = event.target.form.elements[i];
-                if(data.data.hasOwnProperty(input.name))
+                if(data.data.hasOwnProperty(input.name) && !input.value)
                   input.value = data.data[input.name];
               }
             },
