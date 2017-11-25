@@ -31,7 +31,13 @@ export default {
             })
           .then((data) => {
             event.target.form.disabled = false;
-            console.log(data);
+            for(let i in event.target.form.elements){
+              if(!event.target.form.elements.hasOwnProperty(i))
+                continue;
+              let input = event.target.form.elements[i];
+              if(data.data.hasOwnProperty(input.name))
+                input.value = data.data[input.name];
+            }
           }).catch((response) => {
             formController.handleError(response);
             event.target.form.disabled = false;
