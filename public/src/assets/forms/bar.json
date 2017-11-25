@@ -2,7 +2,8 @@
 {
   "type": "date",
   "label": "Data",
-  "name": "date"
+  "name": "date",
+  "required": true
 },
 {
   "type": "number",
@@ -11,23 +12,22 @@
 },
 {
   "label": "Incasso lordo",
-  "prefix": "incasso-lordo-",
   "type": "group",
   "inputs": [
   {
     "type": "number",
     "label": "Bancone",
-    "name": "bancone"
+    "name": "incasso-lordo-bancone"
   },
   {
     "type": "number",
     "label": "Festa",
-    "name": "festa"
+    "name": "incasso-lordo-festa"
   },
   {
     "type": "number",
     "label": "Dall'ingresso",
-    "name": "ingresso"
+    "name": "incasso-lordo-ingresso"
   }]
 },
 {
@@ -37,18 +37,17 @@
 },
 {
   "label": "Eventuale rimborso",
-  "prefix": "rimborso-",
   "type": "group",
   "inputs": [
   {
     "type": "text",
     "label": "Causale",
-    "name": "causale"
+    "name": "imborso-causale"
   },
   {
     "type": "number",
     "label": "Ammontare",
-    "name": "amount"
+    "name": "imborso-amount"
   }]
 },
 {
@@ -58,38 +57,36 @@
 },
 {
   "label": "Versamento Taiga",
-  "prefix": "versamento-",
   "type": "group",
   "inputs": [
   {
     "type": "text",
     "label": "Chi",
-    "name": "chi"
+    "name": "versamento-chi"
   },
   {
     "type": "text",
     "label": "Come",
-    "name": "come"
+    "name": "versamento-come"
   },
   {
     "type": "number",
     "label": "Ammontare",
-    "name": "amount"
+    "name": "versamento-amount"
   }]
 },
 {
   "label": "Eventuali pagamenti",
-  "prefix": "pagamento-",
   "type": "group",
   "inputs": [
   {
     "type": "text",
     "label": "Causale",
-    "name": "causale"
+    "name": "pagamento-causale"
   },
   {
     "type": "number",
     "label": "Ammontare",
-    "name": "amount"
+    "name": "pagamento-amount"
   }]
 }]
