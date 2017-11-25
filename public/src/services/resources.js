@@ -28,7 +28,10 @@ export default {
 
 	errorHandler: function(next){
 		return function(error){
-			if(error.response.status === 401){
+			if(
+				'undefined' !== error.response &&
+				error.response.status === 401
+			){
 				alert('accesso scaduto');
 				logout();
 			}

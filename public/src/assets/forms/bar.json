@@ -42,12 +42,12 @@
   {
     "type": "text",
     "label": "Causale",
-    "name": "imborso-causale"
+    "name": "rimborso-causale"
   },
   {
     "type": "number",
     "label": "Ammontare",
-    "name": "imborso-amount"
+    "name": "rimborso-amount"
   }]
 },
 {

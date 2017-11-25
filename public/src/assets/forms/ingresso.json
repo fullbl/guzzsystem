@@ -1,0 +1,82 @@
+[
+{
+  "type": "date",
+  "label": "Data",
+  "name": "date",
+  "required": true
+},
+{
+  "type": "number",
+  "label": "Fondo cassa iniziale",
+  "name": "fondo-cassa-iniziale"
+},
+{
+  "label": "Incasso lordo",
+  "type": "group",
+  "inputs": [
+  {
+    "type": "number",
+    "label": "Tessere",
+    "name": "incasso-lordo-tessere"
+  },
+  {
+    "type": "number",
+    "label": "Libri",
+    "name": "incasso-lordo-libri"
+  }]
+},
+{
+  "label": "Affitti",
+  "type": "group",
+  "inputs": [
+  {
+    "type": "number",
+    "label": "Free drink",
+    "name": "affitti-free-drink"
+  },
+  {
+    "type": "number",
+    "label": "Pagamento barman",
+    "name": "affitti-pagamento-barman"
+  },
+  {
+    "type": "number",
+    "label": "Locale",
+    "name": "affitti-locale"
+  }]
+},
+{
+  "type": "number",
+  "label": "Rimborso cena",
+  "name": "rimborso-cena"
+},
+{
+  "type": "number",
+  "label": "Incasso netto",
+  "name": "incasso-netto"
+},
+{
+  "label": "Versamento Taiga",
+  "type": "group",
+  "inputs": [
+  {
+    "type": "text",
+    "label": "Chi",
+    "name": "versamento-chi"
+  },
+  {
+    "type": "text",
+    "label": "Come",
+    "name": "versamento-come"
+  },
+  {
+    "type": "number",
+    "label": "Ammontare",
+    "name": "versamento-amount"
+  }]
+},
+{
+  "type": "number",
+  "label": "Fondo cassa finale",
+  "name": "fondo-cassa-finale"
+}]

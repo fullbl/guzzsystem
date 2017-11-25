@@ -32,6 +32,17 @@ export default new Router({
         action: BASE_API_URL + 'bar'
       },
       component: Form
+    },
+    {
+      path: '/ingresso',
+      name: 'Ingresso',
+      beforeEnter: requireAuth,
+      props: {
+        inputs: require('../assets/forms/ingresso.json'),
+        title: 'Ingresso',
+        action: BASE_API_URL + 'ingresso'
+      },
+      component: Form
     }
   ]
 })
