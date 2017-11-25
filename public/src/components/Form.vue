@@ -17,13 +17,31 @@ export default {
   },
   methods: {
     save: (event)=> {
-      let formData = new FormData(event.target);
-      axios.post(event.target.action)
+      let formData = new FormData(event.target),
+        keys = Array.from(formData.keys()),
+        values = Array.from(formData.values()),
+
+        data = keys.reduce(function (previous, key, index) {
+          previous[key] = values[index];
+          return previous
+        }, {});
+
+      axios.post(event.target.action, data)
         .then((response) => {
-          alert('ok');
+          alert(response.data.message);
         })
         .catch((response) => {
-          alert('ko');
+          try{
+            alert(response.response.data.message);
+          }
+          catch(e){
+            try{
+              alert(response.message);
+            }
+            catch(e){
+              alert('errore sconosciuto');
+            }
+          }
         });
     }
   },

@@ -2,5 +2,9 @@
     "db":
     {
         "mongo_string": "mongodb://localhost:27017/guzzdb"
+    },
+    "guzzerie":
+    {
+    	"allowed_client": "http://localhost:8080"
     }
 }
