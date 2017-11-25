@@ -20,18 +20,41 @@ class DBUtils {
     );
   }
 
+  read(filter, next, error){
+    if('undefined' === typeof filter.date){
+      error('la data è obbligatoria');
+      return;
+    }
+    this.connect((db) => {
+      db.collection(SCHEMA)
+        .findOne(
+          filter, 
+          (err, data) => {
+            if(err)
+              error('errore: ' + err);
+            else
+              next(data);
+          }
+        );
+    }, error);
+  }
+
   write(data, next, error){
     if('undefined' === typeof data.date){
       error('la data è obbligatoria');
       return;
     }
 
-    this.connect(function(db){
+    this.connect((db) => {
       db.collection(SCHEMA)
   		  .updateOne(
 			     {"date": data.date},
 			     data,
-			     {"upsert": true}
+			     {"upsert": true},
+           function(err){
+            if(err)
+              error('errore: ' + err);
+           }
 	      );
       next();
     }, error);
