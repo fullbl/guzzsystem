@@ -3,6 +3,7 @@ import Router from 'vue-router';
 import Index from '@/components/Index';
 import Callback from '@/components/Callback';
 import Form from '@/components/Form';
+import List from '@/components/List';
 import { requireAuth } from '../utils/auth';
 
 const BASE_API_URL = process.env.BASE_API_URL;
@@ -43,6 +44,15 @@ export default new Router({
         action: BASE_API_URL + 'ingresso'
       },
       component: Form
+    },
+    {
+      path: '/lista',
+      name: 'Lista',
+      beforeEnter: requireAuth,
+      props: {        
+        listUrl: BASE_API_URL + 'list'
+      },
+      component: List
     }
   ]
 })
