@@ -10,7 +10,7 @@
 	    <input type="submit" value="carica" class="btn btn-success">
 	  </form>
 
-	  <table>
+	  <table class="table table-striped">
 	  	<tr>
 	  		<th>Nome</th>
 	  		<th>Valore</th>
@@ -29,29 +29,35 @@ import errorHandler from '../mixins/errorHandler'
 
 export default {
 	name: 'List',
-  
+  	data: function(){
+  		return {'rows': this.rows};
+  	},
+  	rows: [],
   	methods: {
 		load: function(event){
 			let params;
-			if(!event.target.from){
+			let listController = this;
+			if(!event.target.from.value){
 				alert('Inserire la data di inizio');
 			}
-			if(!event.target.to){
-				event.target.to = event.target.from;
+			if(!event.target.to.value){
+				event.target.to.value = event.target.from.value;
 			}
 			params = {
-				'from' => event.target.from,
-				'to' => event.target.to
+				'from': event.target.from.value,
+				'to': event.target.to.value
 			}
 
 			resources.get(
 				event.target.action,
 				params,
 				function(data){
-					this.rows = data;
+					listController.rows = Object.entries(data.data[0]).map(function(el){
+						return {"name": el[0], "value": el[1]};
+					});
 				},
 				function(error){
-					formController.handleError(response);
+					listController.handleError(error);
 				}
 
 			)
@@ -59,8 +65,14 @@ export default {
 
 		}
   	},
-  	props: ['listUrl', 'rows'] ,
+  	props: ['listUrl'],
   	mixins: [errorHandler] 
 
-}
-</script
+};
+</script>
+<style scoped>
+	table{
+		display: inline-block;
+		width: auto;
+	}
+</style>

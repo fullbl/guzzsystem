@@ -53,7 +53,7 @@
 {
   "type": "number",
   "label": "Netto bar",
-  "name": "netto-bar"
+  "name": "incasso-netto"
 },
 {
   "label": "Versamento Taiga",

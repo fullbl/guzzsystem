@@ -19,9 +19,11 @@ var authCheck = jwt({
     algorithms: ['RS256']
 });
 
-var handleError = function(res, error){
-	res.status(500);
-	res.send({"message":error});
+var handleError = function(res){
+	return (error) =>{
+		res.status(500);
+		res.send({"message":error});
+	};
 };
 
 router.get('/', function(req, res, next) {
@@ -32,28 +34,34 @@ router.get('/bar', authCheck, function(req, res, next) {
 	req.query.type = 'bar';
 	DBUtils.read(req.query, function(data){
 		res.send(data);
-	},handleError);
+	},handleError(res));
 });
 
 router.post('/bar', authCheck, function(req, res, next) {
 	req.body.type = 'bar';
 	DBUtils.write(req.body, function(){
 		res.send({"message":"salvato"});
-	},handleError);
+	},handleError(res));
 });
 
 router.get('/ingresso', authCheck, function(req, res, next) {
 	req.query.type = 'ingresso';
 	DBUtils.read(req.query, function(data){
 		res.send(data);
-	},handleError);
+	},handleError(res));
 });
 
 router.post('/ingresso', authCheck, function(req, res, next) {
 	req.body.type = 'ingresso';
 	DBUtils.write(req.body, function(){
 		res.send({"message":"salvato"});
-	},handleError);
+	},handleError(res));
+});
+
+router.get('/list', authCheck, function(req, res, next) {
+	DBUtils.list(req.query, function(data){
+		res.send(data);
+	},handleError(res));
 });
 
 

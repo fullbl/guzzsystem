@@ -77,7 +77,7 @@ export default {
       );
     }
   },
-  props: ['inputs', 'title', 'action'] ,
+  props: ['inputs', 'title', 'action'],
   mixins: [errorHandler] 
 };
 </script>
