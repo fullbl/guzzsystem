@@ -2,7 +2,6 @@ import decode from 'jwt-decode';
 import axios from 'axios';
 import auth0 from 'auth0-js';
 import Router from 'vue-router';
-import Auth0Lock from 'auth0-lock';
 
 const ID_TOKEN_KEY = 'id_token';
 const ACCESS_TOKEN_KEY = 'access_token';

@@ -129,6 +129,9 @@ class DBUtils {
           data[key] = val;
         }
       }
+      else if('' === val){
+        data[key] = 0;
+      }
     });
 
     data.date = new Date(data.date);
