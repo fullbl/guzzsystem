@@ -100,6 +100,7 @@ class DBUtils {
       error('la data è obbligatoria');
       return;
     }
+    filter.date = new Date(filter.date);
     this.connect((db) => {
       db.collection(SCHEMA)
         .findOne(
