@@ -123,14 +123,14 @@ class DBUtils {
     }
     Object.keys(data).map(function(key){
       let val = data[key];
-      if(/^[0-9.]*$/.test(val)){
+      if('' === val){
+        data[key] = 0;
+      }
+      else if(/^[0-9.]*$/.test(val)){
         val = parseFloat(val);
         if(!isNaN(val)){
           data[key] = val;
         }
-      }
-      else if('' === val){
-        data[key] = 0;
       }
     });
 
