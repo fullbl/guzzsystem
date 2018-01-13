@@ -51,7 +51,7 @@ export default {
       }
     },
     getData: function(form){
-      if(0 && 'undefined' !== typeof FormData){
+      if('undefined' !== typeof FormData){
         let
           formData = new FormData(form),
           keys = Array.from(formData.keys()),
