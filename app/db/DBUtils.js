@@ -29,16 +29,22 @@ class DBUtils {
       filter.to = filter.from;
     }
 
+    let match = {
+      'date': {
+          $gte: new Date(filter.from + " 00:00:00"),
+          $lte: new Date(filter.to + " 23:59:59")
+      }
+    };
+
+    if('undefined' !== typeof filter.type && filter.type){
+      match.type = filter.type;
+    }
+
     this.connect((db) => {
       db.collection(SCHEMA)
         .aggregate([
           {
-            $match: {
-              'date': {
-                  $gte: new Date(filter.from + " 00:00:00"),
-                  $lte: new Date(filter.to + " 23:59:59")
-              }
-            }
+            $match: match
           },
           {
             $group : {

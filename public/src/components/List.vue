@@ -7,6 +7,13 @@
 	  	<label>Al giorno
 	  		<input type="date" name="to">
 	  	</label>
+	  	<label>Lista
+	  		<select name="type">
+	  			<option value="">entrambi</option>
+	  			<option value="bar">bar</option>
+	  			<option value="ingresso">ingresso</option>
+	  		</select>
+	  	</label>
 	    <input type="submit" value="carica" class="btn btn-success">
 	  </form>
 
@@ -45,13 +52,19 @@ export default {
 			}
 			params = {
 				'from': event.target.from.value,
-				'to': event.target.to.value
+				'to': event.target.to.value,
+				'type': event.target.type.value
 			}
 
 			resources.get(
 				event.target.action,
 				params,
 				function(data){
+					if(0 === data.data.length){
+						listController.rows = {};
+						return;
+					}
+
 					listController.rows = Object.entries(data.data[0]).map(function(el){
 						return {"name": el[0], "value": el[1]};
 					});
