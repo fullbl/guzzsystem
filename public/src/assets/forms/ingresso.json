@@ -23,7 +23,18 @@
     "type": "number",
     "label": "Libri",
     "name": "incasso-lordo-libri"
-  }]
+  },
+  {
+    "type": "number",
+    "label": "Pagamento artisti",
+    "name": "pagamento-artisti"
+  },
+  {
+    "type": "number",
+    "label": "Incasso netto",
+    "name": "incasso-netto"
+  }
+]
 },
 {
   "label": "Affitti",
@@ -44,16 +55,6 @@
     "label": "Locale",
     "name": "affitti-locale"
   }]
-},
-{
-  "type": "number",
-  "label": "Rimborso cena",
-  "name": "rimborso-cena"
-},
-{
-  "type": "number",
-  "label": "Incasso netto",
-  "name": "incasso-netto"
 },
 {
   "label": "Versamento Taiga",
