@@ -29,4 +29,10 @@ export default {
   width: 80%;
   max-width: 400px;
 }
+input[type="date"]{
+    display:block;
+    -webkit-appearance: textfield;
+    -moz-appearance: textfield;
+    min-height: 1.2em;
+}
 </style>
