@@ -50,23 +50,37 @@ export default {
           break;
       }
     },
+    getData: function(form){
+      if(0 && 'undefined' !== typeof FormData){
+        let
+          formData = new FormData(form),
+          keys = Array.from(formData.keys()),
+          values = Array.from(formData.values());
+
+        return keys.reduce(function (previous, key, index) {
+          previous[key] = values[index];
+          return previous;
+        }, {});
+      }
+      else{
+        let elements = {};
+
+        for(let i in form.elements){
+          if(form.elements.hasOwnProperty(i)){
+            elements[form.elements[i].name] = form.elements[i].value;
+          }
+        }
+        return elements;
+      }
+    },
     save: function(event) {
       event.target.disabled = true;
-      let 
-        formController = this,
-        formData = new FormData(event.target),
-        keys = Array.from(formData.keys()),
-        values = Array.from(formData.values()),
-
-        data = keys.reduce(function (previous, key, index) {
-          previous[key] = values[index];
-          return previous
-        }, {});
+      let formController = this;
 
       resources.post(
         event.target.action, 
 
-        data,
+        formController.getData(event.target),
 
         (response) => {
           event.target.disabled = false;
