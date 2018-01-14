@@ -18,13 +18,12 @@
 	  </form>
 
 	  <table class="table table-striped">
-	  	<tr>
-	  		<th>Nome</th>
-	  		<th>Valore</th>
-	  	</tr>
-	  	<tr v-for="row in rows">
-	  		<td>{{row.name}}</td>
-	  		<td>{{row.value}}</td>
+	  	<tr v-for="name in names">
+	  		<td>{{name}}</td>
+	  		<td v-for="row in rows">
+	  			<span v-if="row.hasOwnProperty(name)">{{row[name]}}</span>
+	  			<span v-else>&nbsp;</span>
+	  		</td>
 	  	</tr>
 	  </table>
 	</div>
@@ -37,9 +36,10 @@ import errorHandler from '../mixins/errorHandler'
 export default {
 	name: 'List',
   	data: function(){
-  		return {'rows': this.rows};
+  		return {'rows': this.rows, 'names': this.names};
   	},
   	rows: [],
+  	names: [],
   	methods: {
 		load: function(event){
 			let params;
@@ -65,9 +65,21 @@ export default {
 						return;
 					}
 
-					listController.rows = Object.entries(data.data[0]).map(function(el){
-						return {"name": el[0], "value": el[1]};
+					listController.rows = data.data.map((el) => {
+						delete el[''];
+						if('Totale' !== el.date ){
+							let date = new Date(el.date);
+							el.date = date.getFullYear() + '/' + (date.getMonth() + 1) + '/' + date.getDate(); 
+						}
+						return el;
 					});
+
+					let names = listController.rows.reduce((carry, row)=> {
+						return carry.concat(Object.keys(row));
+					}, []);
+
+					listController.names = [...new Set(names)];
+
 				},
 				function(error){
 					listController.handleError(error);

@@ -21,6 +21,7 @@ var authCheck = jwt({
 
 var handleError = function(res){
 	return (error) =>{
+		debug(error);
 		res.status(500);
 		res.send({"message":error});
 	};

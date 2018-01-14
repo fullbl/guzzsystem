@@ -1,6 +1,6 @@
 <template>
   <div class="app">
-    GuzzLord!
+    GuzzLord ti da il benvenuto, Cavallo della Goloseria!
   </div>
 </template>
 

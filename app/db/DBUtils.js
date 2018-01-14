@@ -20,26 +20,7 @@ class DBUtils {
     );
   }
 
-  list(filter,next,error){
-    if('undefined' === typeof filter.from || !filter.from){
-      error('la data di inizio è obbligatoria');
-      return;
-    }
-    if('undefined' === typeof filter.to || !filter.to){
-      filter.to = filter.from;
-    }
-
-    let match = {
-      'date': {
-          $gte: new Date(filter.from + " 00:00:00"),
-          $lte: new Date(filter.to + " 23:59:59")
-      }
-    };
-
-    if('undefined' !== typeof filter.type && filter.type){
-      match.type = filter.type;
-    }
-
+  getAggregate(match, next, error){
     this.connect((db) => {
       db.collection(SCHEMA)
         .aggregate([
@@ -98,7 +79,50 @@ class DBUtils {
         }
       );
     }, error);
+  }
 
+  getSingle(match, next, error){
+    this.connect((db) => {
+      db.collection(SCHEMA).find(match, {fields : {'_id': 0, '': 0}}, (err,data) => {
+        if(err){
+          error('errore: ' + err);
+          debug(err);
+        }
+        else
+          next(data);
+      });
+    }, error);
+  }
+
+  list(filter,next,error){
+    let controller, match;
+    if('undefined' === typeof filter.from || !filter.from){
+      error('la data di inizio è obbligatoria');
+      return;
+    }
+    if('undefined' === typeof filter.to || !filter.to){
+      filter.to = filter.from;
+    }
+
+    match = {
+      'date': {
+          $gte: new Date(filter.from + " 00:00:00"),
+          $lte: new Date(filter.to + " 23:59:59")
+      }
+    };
+    controller = this;
+
+    if('undefined' !== typeof filter.type && filter.type){
+      match.type = filter.type;
+    }
+    controller.getAggregate(match, function(aggregateData){
+      aggregateData[0].date = "Totale";
+      controller.getSingle(match, function(singleData){
+        singleData.toArray((err, data) => {
+          next(data.concat(aggregateData));
+        });
+      }, error);
+    }, error);  
   }
 
   read(filter, next, error){
