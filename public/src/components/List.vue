@@ -65,20 +65,42 @@ export default {
 						return;
 					}
 
+					let totals = data.data.reduce((carry, el) => {
+						if('Totale' === el.date)
+							return carry;
+						for(let i in el){
+							if(!el.hasOwnProperty(i) || isNaN(el[i]))
+								continue;
+							if(!carry.hasOwnProperty(i)){
+								carry[i] = 0;
+							}
+
+							carry[i] += el[i];
+						}
+						return carry;	
+					}, {});
+
+					let names = data.data.reduce((carry, row)=> {
+						return carry.concat(Object.keys(row));
+					}, []);
+					listController.names = [...new Set(names)];
+
 					listController.rows = data.data.map((el) => {
 						delete el[''];
 						if('Totale' !== el.date ){
 							let date = new Date(el.date);
 							el.date = date.getFullYear() + '/' + (date.getMonth() + 1) + '/' + date.getDate(); 
 						}
+						else{
+							for(let i in listController.names){
+								let name = listController.names[i];
+								if(totals.hasOwnProperty(name)){
+									el[name] = totals[name];
+								}
+							}
+						}
 						return el;
 					});
-
-					let names = listController.rows.reduce((carry, row)=> {
-						return carry.concat(Object.keys(row));
-					}, []);
-
-					listController.names = [...new Set(names)];
 
 				},
 				function(error){
