@@ -28,11 +28,6 @@
     "type": "number",
     "label": "Pagamento artisti",
     "name": "pagamento-artisti"
-  },
-  {
-    "type": "number",
-    "label": "Incasso netto",
-    "name": "incasso-netto"
   }
 ]
 },
@@ -75,6 +70,11 @@
     "label": "Ammontare",
     "name": "versamento-amount"
   }]
+},
+{
+  "type": "number",
+  "label": "Incasso netto",
+  "name": "incasso-netto"
 },
 {
   "type": "number",

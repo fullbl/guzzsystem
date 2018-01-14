@@ -89,4 +89,9 @@
     "label": "Ammontare",
     "name": "pagamento-amount"
   }]
+},
+{
+  "type": "number",
+  "label": "Fondo cassa finale",
+  "name": "fondo-cassa-finale"
 }]
