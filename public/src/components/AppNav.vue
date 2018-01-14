@@ -4,6 +4,7 @@
       <router-link to="/bar" class="navbar-brand btn btn-info log">Bar</router-link>
       <router-link to="/ingresso" class="navbar-brand btn btn-info log">Ingresso</router-link>
       <router-link to="/lista" class="navbar-brand btn btn-info log">Lista</router-link>
+      <router-link to="/horses" class="navbar-brand btn btn-warning log">Special</router-link>
     </div>
     <div class="nav navbar-nav navbar-right">
       <button type="button" class="btn btn-danger log" @click="handleLogout()" v-show="isLoggedIn()">Log out </button>

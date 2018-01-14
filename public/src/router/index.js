@@ -4,6 +4,7 @@ import Index from '@/components/Index';
 import Callback from '@/components/Callback';
 import Form from '@/components/Form';
 import List from '@/components/List';
+import Special from '@/components/Special';
 import { requireAuth } from '../utils/auth';
 
 const BASE_API_URL = process.env.BASE_API_URL;
@@ -53,6 +54,15 @@ export default new Router({
         listUrl: BASE_API_URL + 'list'
       },
       component: List
+    },
+    {
+      path: '/horses',
+      name: 'Special',
+      beforeEnter: requireAuth,
+      props: {        
+        listUrl: BASE_API_URL + 'special'
+      },
+      component: Special
     }
   ]
 })
